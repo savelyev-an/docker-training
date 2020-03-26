@@ -4,7 +4,7 @@
 # sample1
 находясь в каталоге sample1 
 1) запускаем приложение: python app.py  
-   заходим браузером http:\\localhost:5000\ - убеждаемся что приложение работает  
+   заходим браузером http:\\\localhost:5000\ - убеждаемся что приложение работает  
    останавливаем приложение. 
 2) строим образ докер: docker build -t my_docker_flask:latest .  
    запускаем контейнер: docker run -d  my_docker_flask:latest. 
