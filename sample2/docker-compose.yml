@@ -2,7 +2,7 @@ version: '3'
 services:
   db:
     image: postgres:latest
-    restart: always
+    #restart: always
     environment:
       POSTGRES_PASSWORD: postgres
     ports:
@@ -11,5 +11,6 @@ services:
   app:
     #image: registry.stageogip.ru/platfroma-iaas/garbage:latest
     build: .
+    #restart: always
     environment:
       db_host: db
