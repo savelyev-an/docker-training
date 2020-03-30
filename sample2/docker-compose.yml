@@ -8,10 +8,8 @@ services:
     ports:
       - "5432:5432"
 
-  sample1:
+  app:
     #image: registry.stageogip.ru/platfroma-iaas/garbage:latest
     build: .
-    depends_on:
-      - db
     environment:
       db_host: db
