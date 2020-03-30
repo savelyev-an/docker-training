@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  sample1:
+    #image: registry.stageogip.ru/platfroma-iaas/garbage:latest
+    build: .
+    depends_on:
+      - db
+    environment:
+      db_host: db
