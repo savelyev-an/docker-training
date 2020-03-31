@@ -9,7 +9,7 @@ services:
       - "5432:5432"
 
   app:
-    #image: registry.stageogip.ru/platfroma-iaas/garbage:latest
+    #image: registry.stageppp.ru/pppp/garbage:latest
     build: .
     #restart: always
     environment:

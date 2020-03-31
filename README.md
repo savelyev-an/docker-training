@@ -15,6 +15,28 @@
    
    
 #sample2 - здесь app.py - пополнился вычитыванием db_host из переменной окружения и попыткой получить коннект на данную бд
-1) Запустим контейнер с postgresql - 
+1) Запустим контейнер с postgresql -
    docker run --name psql -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d --rm postgres
-находясь в какталоге 
+   находясь в каталоге sample2 выполним:
+   python app.py
+   видно, что приложение  получило коннект на базу и вычитало версию бд
+   Остановим приложение
+2) Соберем и запустим контейнер, предполагая что контейнер сможет получить по дефолту localhost и получить коннект на ранее запущенную базу
+   docker build -t my_docker_flask:latest .
+   docker rm -f training
+   docker run -p 5000:5000 --name training  my_docker_flask:latest
+   Мы видим что коннект на БД получить не удалось, т.к. для контейнера 'localhost' - это то, что находится внутри контейнера
+3) Остановим контейнера и попробуем запустить их через docker-compose:
+   docker stop psql
+   docker stop training
+   docker-compose build
+   docker-compose up
+   Видим, что приложение обращается за коннектом к бд раньше, чем база начинает отвечать на запросы
+4) Задача
+    - использовать в docker-compose директиву depends_on
+    - применить скрипт гарантирующий запуск приложения только после подъема сервиса находящегося в другом контейнере
+    (https://github.com/ufoscout/docker-compose-wait)
+
+
+
+Более подробные комментарии на https://docs.google.com/document/d/1dOoL8MsAlGKSOoStM4vmnkCVMZy3K41A9fTD8KC2mr8
